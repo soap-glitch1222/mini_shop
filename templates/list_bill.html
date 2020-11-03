@@ -10,14 +10,14 @@
       </select>
     </div>
   {/if}
-  <div class="col-md-10">
+  <div class="col-md-10" >
     {if $bill_arr}
-    <ul class="list-group">
+    <ul class="list-group" style="border-left:solid;border-left-color:#0066ff;border-bottom:dashed;border-top:dashed;border-right:dashed;border-color:#ff8c1a;">
       {foreach from=$bill_arr item=bill}
-        <li class="list-group-item">
-          <span class="badge">{$bill.bill_total}</span>
-          <a href="bill.php?op=display_bill&bill_sn={$bill.bill_sn}">{$bill.bill_date}</a>
-          {if $bill.bill_status}<span class="label label-success">{$bill.bill_status}</span>{/if}
+        <li class="list-group-item" style="background-color:#ff66cc">
+          <span class="badge" style="background-color:#00bfff"><b>{$bill.bill_total}</b></span>
+          <a href="bill.php?op=display_bill&bill_sn={$bill.bill_sn}" style="color:black"><b>{$bill.bill_date}</b></a>
+          {if $bill.bill_status}<span class="label label-success" style = "background-color:#ff9966">{$bill.bill_status}</span>{/if}
         </li>
       {/foreach}
     </ul>
