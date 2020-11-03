@@ -1,10 +1,10 @@
 <h1>{if $isAdmin}訂單管理{else}我的訂單{/if}</h1>
 <div class="row">
   {if $isAdmin}
-    <div class="col-md-2">
-      <select size=10 class="form-control" onChange="location.href='bill.php?user_sn='+this.value">
+    <div class="col-md-2" >
+      <select size=10 class="form-control" onChange="location.href='bill.php?user_sn='+this.value" style="background-color:#9900cc">
         {foreach from=$all_users item=mem}
-          <option value="{$mem.user_sn}" {if $now_user_sn==$mem.user_sn}selected{/if}>{$mem.user_name}</option>
+          <option value="{$mem.user_sn}" {if $now_user_sn==$mem.user_sn}selected{/if} >{$mem.user_name}</option>
         {/foreach}
       }
       </select>
