@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2020-11-03 06:29:10
+/* Smarty version 3.1.29, created on 2020-11-10 06:56:13
   from "C:\UniServerZ\www\mini_shop\templates\display_user.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5fa0f8b6dfce52_90327216',
+  'unifunc' => 'content_5faa398d00b9d2_37961354',
   'file_dependency' => 
   array (
     '5123d3f7966c5b1e10ff34f2d72cedec3637d4f5' => 
     array (
       0 => 'C:\\UniServerZ\\www\\mini_shop\\templates\\display_user.html',
-      1 => 1604383015,
+      1 => 1604991369,
       2 => 'file',
     ),
   ),
@@ -19,9 +19,9 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_5fa0f8b6dfce52_90327216 ($_smarty_tpl) {
+function content_5faa398d00b9d2_37961354 ($_smarty_tpl) {
 ?>
-<h1>會員資料</h1>
+<h1 style="color:white">會員資料</h1>
 <div class="row">
   <?php if ($_smarty_tpl->tpl_vars['isAdmin']->value) {?>
     <div class="col-md-2">
@@ -53,7 +53,7 @@ $_smarty_tpl->tpl_vars['mem'] = $__foreach_mem_0_saved_item;
     </div>
   <?php }?>
   <div class="col-md-10">
-    <table class="table table-hover table-bordered table-responsive">
+    <table class="table table-hover table-bordered table-responsive" style="color:white">
         <tr>
           <td>姓名</td><td><?php echo $_smarty_tpl->tpl_vars['user']->value['user_name'];?>
 </td>

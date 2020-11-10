@@ -3,9 +3,9 @@
     <img src="{$goods.pic}" alt="{$goods.goods_title}" class="img-thumbnail">
   </div>
   <div class="col-md-6">
-    <h2>{$goods.goods_title}</h2>
-    <p>售價：{$goods.goods_price}元整</p>
-    <p>人氣：{$goods.goods_counter}</p>
+    <h2 style="color:white">{$goods.goods_title}</h2>
+    <p style="color:white">售價：{$goods.goods_price}元整</p>
+    <p style="color:white">人氣：{$goods.goods_counter}</p>
     <div>
       <a href="index.php?op=add_to_cart&goods_sn={$goods.goods_sn}&goods_title={$goods.goods_title}&goods_amount=1" class="btn btn-primary" role="button">加入購物車</a>
       {if $isAdmin}
@@ -18,38 +18,6 @@
     <head>
         <meta charset="UTF-8">
         <title>发表评论</title>
-        <style type="text/css">
-            .demo{
-                width:500px;
-                margin:  0 auto;
-            }
-            h3{
-                font-size:18px
-    }
-            #comments{
-                margin:10px auto
-    }
-            #post{
-                margin-top:10px
-    }
-            #comments p,#post p{
-                line-height:30px
-    }
-            #comments p span{
-                margin:4px; color:#999
-    }
-            #message{
-                position:relative;
-                display:none;
-                width:100px;
-                padding:4px;
-                margin-top:-100px;
-                margin-left:30px;
-                background: #ff0000;
-                color: #c286ff;
-                z-index:1001
-    }
-        </style>
         <script src="//cdn.bootcss.com/jquery/1.4.2/jquery.min.js"></script>
         <script type="text/javascript">
             $(function(){
@@ -85,19 +53,33 @@
     <body>
     <div class="demo">
         <div id="comments">
-            <h3>评论列表</h3>
+            <h3 style="color:white">评论列表</h3>
+            <p id="demo" style="color:white"></p>
+
         </div>
         <div id="post">
-            <h3>发表评论</h3>
-            <p>昵称：</p>
-            <p><input type="text" class="input" id="user" /></p>
-            <p>评论内容：</p>
+            <h3 style="color:white">发表评论</h3>
+            <p style="color:white">昵称：</p>
+            <p><input type="text" class="input" id="user" ></p>
+            <p style="color:white">评论内容：</p>
             <p><textarea class="input" id="txt" style="width:100%; height:80px"></textarea></p>
-            <p><input type="submit" value="发表" id="add" /></p>
+            <p><input type="submit" value="发表" id="add" ></p>
             <div id="message"></div>
         </div>
     </div>
     </body>
+    <script>
+    $(document).ready(function (){
+      $("#add").click(function(){
+        var name = $("#user").val();
+        $("#demo").append(name + "说道:");
+        var txt1 = $("#txt").val();
+        $("#demo").append(txt1);
+        $("#demo").append("<br>");
+        
+      });
+    });
+    </script>
     </html>
 
   </div>

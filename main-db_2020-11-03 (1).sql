@@ -1,31 +1,6 @@
--- phpMyAdmin SQL Dump
--- version 5.0.2
--- https://www.phpmyadmin.net/
---
--- 主機： 127.0.0.1:3306
--- 產生時間： 2020-11-03 07:57:27
--- 伺服器版本： 8.0.18
--- PHP 版本： 7.4.5
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- 資料庫： `main`
---
-
--- --------------------------------------------------------
-
---
--- 資料表結構 `bill`
---
 
 CREATE TABLE `bill` (
   `bill_sn` mediumint(8) UNSIGNED NOT NULL COMMENT '帳單編號',
@@ -35,18 +10,12 @@ CREATE TABLE `bill` (
   `bill_status` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '處理狀態'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- 傾印資料表的資料 `bill`
---
+
 
 INSERT INTO `bill` (`bill_sn`, `user_sn`, `bill_total`, `bill_date`, `bill_status`) VALUES
 (1, 1, 1288, '2020-11-03 06:37:28', '已出貨');
 
--- --------------------------------------------------------
 
---
--- 資料表結構 `bill_detail`
---
 
 CREATE TABLE `bill_detail` (
   `bill_sn` mediumint(8) UNSIGNED NOT NULL COMMENT '帳單編號',
@@ -55,18 +24,12 @@ CREATE TABLE `bill_detail` (
   `goods_total` mediumint(8) UNSIGNED NOT NULL COMMENT '小計'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- 傾印資料表的資料 `bill_detail`
---
+
 
 INSERT INTO `bill_detail` (`bill_sn`, `goods_sn`, `goods_amount`, `goods_total`) VALUES
 (1, 2, 1, 1288);
 
--- --------------------------------------------------------
 
---
--- 資料表結構 `goods`
---
 
 CREATE TABLE `goods` (
   `goods_sn` mediumint(8) UNSIGNED NOT NULL COMMENT '商品編號',
@@ -77,18 +40,9 @@ CREATE TABLE `goods` (
   `goods_date` datetime NOT NULL COMMENT '上架日期'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- 傾印資料表的資料 `goods`
---
 
 INSERT INTO `goods` (`goods_sn`, `goods_title`, `goods_content`, `goods_price`, `goods_counter`, `goods_date`) VALUES
 (2, '魔物猎人', '', 1288, 1, '2020-11-03 06:37:06');
-
--- --------------------------------------------------------
-
---
--- 資料表結構 `users`
---
 
 CREATE TABLE `users` (
   `user_sn` mediumint(8) UNSIGNED NOT NULL COMMENT '使用者編號',
@@ -104,69 +58,39 @@ CREATE TABLE `users` (
   `user_address` varchar(255) NOT NULL COMMENT '使用者地址'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- 傾印資料表的資料 `users`
---
+
 
 INSERT INTO `users` (`user_sn`, `user_name`, `user_id`, `user_passwd`, `user_email`, `user_sex`, `user_tel`, `user_zip`, `user_county`, `user_district`, `user_address`) VALUES
 (1, '邹忌', '107b21867', '$2y$10$xY/xcXS/nchMf6IQ5KT5LOru/ndMpiKj06ADEhy.ITgKAYaJaJD2.', '107不1867@gmail.com', '先生', '66525825', '744', '台南市', '新市區', '长大路一号');
 
---
--- 已傾印資料表的索引
---
 
---
--- 資料表索引 `bill`
---
 ALTER TABLE `bill`
   ADD PRIMARY KEY (`bill_sn`);
 
---
--- 資料表索引 `bill_detail`
---
+
 ALTER TABLE `bill_detail`
   ADD PRIMARY KEY (`bill_sn`,`goods_sn`);
 
---
--- 資料表索引 `goods`
---
+
 ALTER TABLE `goods`
   ADD PRIMARY KEY (`goods_sn`);
 
---
--- 資料表索引 `users`
---
+
 ALTER TABLE `users`
   ADD PRIMARY KEY (`user_sn`),
   ADD UNIQUE KEY `user_id` (`user_id`);
 
-ALTER TABLE `comments`
+/*ALTER TABLE `comments`
   ADD PRIMARY KEY (`id`),ADD PRIMARY KEY (`comment`),ADD PRIMARY KEY (`addtime`),
-  ADD UNIQUE KEY `user` (`user`);
+  ADD UNIQUE KEY `user` (`user`);*/
 
---
--- 在傾印的資料表使用自動遞增(AUTO_INCREMENT)
---
-
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `bill`
---
 ALTER TABLE `bill`
   MODIFY `bill_sn` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '帳單編號', AUTO_INCREMENT=2;
 
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `goods`
---
+
 ALTER TABLE `goods`
   MODIFY `goods_sn` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '商品編號', AUTO_INCREMENT=3;
 
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `users`
---
 ALTER TABLE `users`
   MODIFY `user_sn` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '使用者編號', AUTO_INCREMENT=2;
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

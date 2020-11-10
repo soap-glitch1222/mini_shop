@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2020-11-03 06:36:12
+/* Smarty version 3.1.29, created on 2020-11-10 07:51:59
   from "C:\UniServerZ\www\mini_shop\templates\goods_display.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5fa0fa5cbcb374_96773444',
+  'unifunc' => 'content_5faa469fa02f51_82077652',
   'file_dependency' => 
   array (
     'f8929e122a9688fefadb2bd14d9d4b075a8c63c2' => 
     array (
       0 => 'C:\\UniServerZ\\www\\mini_shop\\templates\\goods_display.html',
-      1 => 1604383015,
+      1 => 1604994642,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_5fa0fa5cbcb374_96773444 ($_smarty_tpl) {
+function content_5faa469fa02f51_82077652 ($_smarty_tpl) {
 ?>
 <div class="row">
   <div class="col-md-6">
@@ -28,11 +28,11 @@ function content_5fa0fa5cbcb374_96773444 ($_smarty_tpl) {
 " class="img-thumbnail">
   </div>
   <div class="col-md-6">
-    <h2><?php echo $_smarty_tpl->tpl_vars['goods']->value['goods_title'];?>
+    <h2 style="color:white"><?php echo $_smarty_tpl->tpl_vars['goods']->value['goods_title'];?>
 </h2>
-    <p>售價：<?php echo $_smarty_tpl->tpl_vars['goods']->value['goods_price'];?>
+    <p style="color:white">售價：<?php echo $_smarty_tpl->tpl_vars['goods']->value['goods_price'];?>
 元整</p>
-    <p>人氣：<?php echo $_smarty_tpl->tpl_vars['goods']->value['goods_counter'];?>
+    <p style="color:white">人氣：<?php echo $_smarty_tpl->tpl_vars['goods']->value['goods_counter'];?>
 </p>
     <div>
       <a href="index.php?op=add_to_cart&goods_sn=<?php echo $_smarty_tpl->tpl_vars['goods']->value['goods_sn'];?>
@@ -45,6 +45,81 @@ function content_5fa0fa5cbcb374_96773444 ($_smarty_tpl) {
 " class="btn btn-danger">刪除商品</a>
       <?php }?>
     </div>
+
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>发表评论</title>
+        <?php echo '<script'; ?>
+ src="//cdn.bootcss.com/jquery/1.4.2/jquery.min.js"><?php echo '</script'; ?>
+>
+        <?php echo '<script'; ?>
+ type="text/javascript">
+            $(function(){
+                var comments = $("#comments");
+                $.getJSON("server.php",function(json){
+                    $.each(json,function(index,array){
+                        var txt = "<p><strong>"+array["user"]+"</strong>："+array["comment"]+"<span>"+array["addtime"]+"</span></p>";
+                        comments.append(txt);
+                    });
+                });
+                $("#add").click(function(){
+                    var user = $("#user").val();
+                    var txt = $("#txt").val();
+                    $.ajax({
+                        type: "POST",
+                        url: "comment.php",
+                        data: "user="+user+"&txt="+txt,
+                        success: function(msg){
+                            if(msg==1){
+                                var str = "<p><strong>"+user+"</strong>："+txt+"<span>刚刚</span></p>";
+                                comments.append(str);
+                                $("#message").show().html("发表成功！").fadeOut(1000);
+                                $("#txt").attr("value","");
+                            }else{
+                                $("#message").show().html(msg).fadeOut(1000);
+                            }
+                        }
+                    });
+                });
+            });
+        <?php echo '</script'; ?>
+>
+    </head>
+    <body>
+    <div class="demo">
+        <div id="comments">
+            <h3 style="color:white">评论列表</h3>
+            <p id="demo" style="color:white"></p>
+
+        </div>
+        <div id="post">
+            <h3 style="color:white">发表评论</h3>
+            <p style="color:white">昵称：</p>
+            <p><input type="text" class="input" id="user" ></p>
+            <p style="color:white">评论内容：</p>
+            <p><textarea class="input" id="txt" style="width:100%; height:80px"></textarea></p>
+            <p><input type="submit" value="发表" id="add" ></p>
+            <div id="message"></div>
+        </div>
+    </div>
+    </body>
+    <?php echo '<script'; ?>
+>
+    $(document).ready(function (){
+      $("#add").click(function(){
+        var name = $("#user").val();
+        $("#demo").append(name + "说道:");
+        var txt1 = $("#txt").val();
+        $("#demo").append(txt1);
+        $("#demo").append("<br>");
+        
+      });
+    });
+    <?php echo '</script'; ?>
+>
+    </html>
+
   </div>
 </div>
 
